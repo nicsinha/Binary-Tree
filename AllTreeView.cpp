@@ -36,6 +36,37 @@ void leftview(Node* root) {
     cout<<endl;
 }
 
+void topview(Node* root) {
+
+    map<int,int> mp;
+    queue<pair<Node*,int>> q;
+
+    q.push({root,0});
+
+    while(!q.empty()) {
+
+        auto temp = q.front();
+        q.pop();
+
+        Node* node = temp.first;
+        int line = temp.second;
+
+        if(mp.find(line) == mp.end()) {
+            mp[line] = node->data;
+        }
+        if(node->left) {
+            q.push({node->left,line-1});
+        }
+        if(node->right) {
+            q.push({node->right,line+1});
+        }
+
+    }
+    for(auto i:mp) cout<<i.second<<" ";
+    cout<<endl;
+
+}
+
 
 
 int main() {
@@ -49,5 +80,6 @@ int main() {
     root->left->left->left = new Node(8);
 
     leftview(root);
+    topview(root);
 
 }
