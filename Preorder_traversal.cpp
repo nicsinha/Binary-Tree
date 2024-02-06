@@ -55,11 +55,11 @@ void levelorder(Node* root) {
 
         for(int i=0;i<n;i++) {
             cout<<st.front()->data<<" ";
-            Node* temp = st.front();
+            Node* node = st.front();
             st.pop();
 
-            if(temp->left) {st.push(temp->left);}
-            if(temp->right) {st.push(temp->right);}  
+            if(node->left) {st.push(node->left);}
+            if(node->right) {st.push(node->right);}  
         }
         cout<<endl;
     }
@@ -75,19 +75,49 @@ vector<int> PreOrder_iteration(Node* root) {
 
     while(!st.empty()) {
      
-      Node* temp = st.top();
+      Node* node = st.top();
 
       st.pop();
 
-      res.push_back(temp->data);
+      res.push_back(node->data);
       
-      if(temp->right) {st.push(temp->right);}
-      if(temp->left) {st.push(temp->left);}
+      if(node->right) {st.push(node->right);}
+      if(node->left) {st.push(node->left);}
     }
 
     return res;
 
 }
+vector<int> InOrder_iteration(Node* root) {
+
+    vector<int> res;
+    Node* node = root;
+    stack<Node*> st;
+    
+    while(true) {
+     
+      if(node!=NULL) {
+
+        st.push(node);
+        node = node->left;
+      }
+      else {
+
+        if(st.empty()){break;}
+
+        node = st.top();
+        st.pop();
+        res.push_back(node->data);
+        //cout<<node->data<<" ";
+        node = node->right;
+      }
+
+    }
+
+    return res;
+
+}
+
 
 
 int main() {
@@ -106,7 +136,9 @@ int main() {
     // cout<<endl;
     // levelorder(root);
 
-    vector<int> v = PreOrder_iteration(root);
+    //vector<int> v = PreOrder_iteration(root);
+
+    vector<int> v = InOrder_iteration(root);
 
     for(auto i:v) {cout<<i<<" ";}
 }
