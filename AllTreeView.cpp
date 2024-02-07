@@ -66,6 +66,71 @@ void topview(Node* root) {
     cout<<endl;
 
 }
+void downview(Node* root) {
+
+    map<int,int> mp;
+    queue<pair<Node*,int>> q;
+
+    q.push({root,0});
+
+    while(!q.empty()) {
+
+        auto temp = q.front();
+        q.pop();
+
+        Node* node = temp.first;
+        int line = temp.second;
+
+        mp[line] = node->data;
+        
+        if(node->left) {
+            q.push({node->left,line-1});
+        }
+        if(node->right) {
+            q.push({node->right,line+1});
+        }
+
+    }
+    for(auto i:mp) cout<<i.second<<" ";
+    cout<<endl;
+
+}
+void verticalview(Node* root) {
+
+    multimap<int,int> mp;
+    queue<pair<Node*,int>> q;
+
+    q.push({root,0});
+
+    while(!q.empty()) {
+
+        auto temp = q.front();
+        q.pop();
+
+        Node* node = temp.first;
+        int line = temp.second;
+
+        mp.insert({line,node->data});
+        
+        if(node->left) {
+            q.push({node->left,line-1});
+        }
+        if(node->right) {
+            q.push({node->right,line+1});
+        }
+
+    }
+    int x,y;
+    for(auto i:mp) {
+        x = i.first;
+        if(x!=y){cout<<endl;}
+        cout<<i.second<<" ";
+        y = i.first;
+
+    }
+    cout<<endl;
+
+}
 
 
 
@@ -77,9 +142,13 @@ int main() {
     root->left->left = new Node(4);
     root->left->right = new Node(5);
     root->right->left = new Node(6);
+    root->right->right = new Node(7);
     root->left->left->left = new Node(8);
+    root->left->left->right = new Node(9);
 
-    leftview(root);
-    topview(root);
+    // leftview(root);
+    // topview(root);
+    // downview(root);
+    verticalview(root);
 
 }
