@@ -62,6 +62,19 @@ int find_diameter(Node* root,int &diameter) {
     diameter = max(diameter,lh+rh);
     return 1+max(lh,rh);
 }
+int longestPathSum(Node* root,int &sum) {
+
+    if(root == NULL) {
+        return 0;
+    }
+
+    int l = longestPathSum(root->left,sum);
+    int r = longestPathSum(root->right,sum);
+
+    sum = max(sum, l+r+root->data);
+
+    return root->data + max(l,r);
+}
 
 int main() {
 
@@ -74,9 +87,13 @@ int main() {
     root->right->right = new Node(7);
     root->left->left->left = new Node(8);
     root->left->left->right = new Node(9);
-    int diameter = 0;
+    int diameter = 0,sum=0;
 
-    cout<<find_diameter(root,diameter);
+    int t = longestPathSum(root,sum);
+    cout<<"Sum = "<<sum<<endl;
+
+
+    //cout<<find_diameter(root,diameter);
 
     //cout<<height(root);
 
