@@ -75,6 +75,14 @@ int longestPathSum(Node* root,int &sum) {
 
     return root->data + max(l,r);
 }
+bool isSameTree(Node* p, Node* q) {
+
+    if(p==NULL || q==NULL) {
+        return p==q;
+    }
+    return (p->data == q->data) && isSameTree(p->left,q->left) && isSameTree(p->right,q->right);
+    
+}
 
 int main() {
 
