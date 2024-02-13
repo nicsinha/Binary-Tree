@@ -49,10 +49,13 @@ void levelorder(Node* root) {
 
     st.push(root);
 
+    bool check = false;
+
     while(!st.empty()) {
 
         int n = st.size();
 
+         
         for(int i=0;i<n;i++) {
             cout<<st.front()->data<<" ";
             Node* node = st.front();
