@@ -46,6 +46,17 @@ void rightBoundary(Node* root) {
     cout<<endl;
 }
 
+void printleaf(Node* root) {
+
+    if (!root)
+        return;
+    if(!root->left && !root->right) {cout<<root->data<<" ";return;}
+    if(root->left) printleaf(root->left);
+    
+    if(root->right) printleaf(root->right);
+    
+}
+
 
 int main() {
 
@@ -61,5 +72,6 @@ int main() {
 
     leftBoundary(root);
     rightBoundary(root);
+    printleaf(root);
 
 }
