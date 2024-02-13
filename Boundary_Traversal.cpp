@@ -25,10 +25,25 @@ void leftBoundary(Node* root) {
 
     while(temp) {
         if(!isleaf(temp)) {cout<<temp->data<<" ";}
-
+        //cout<<temp->data<<" ";
         if(temp->left) {temp = temp->left;}
         else {temp = temp->right;}
     }
+    cout<<endl;
+}
+
+void rightBoundary(Node* root) {
+    
+    Node* temp = root;
+
+    while(temp) {
+        if(!isleaf(temp)) {cout<<temp->data<<" ";}
+
+        if(temp->right) {temp = temp->right;}
+        else {temp = temp->left;}
+
+    }
+    cout<<endl;
 }
 
 
@@ -45,5 +60,6 @@ int main() {
     root->left->left->right = new Node(9);
 
     leftBoundary(root);
+    rightBoundary(root);
 
 }
