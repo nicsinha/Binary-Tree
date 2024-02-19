@@ -15,21 +15,20 @@ struct Node
     }
 };
 
-// void findNode(Node* t, int k, vector<int> &ans, int l) {
+void findNodeAtDistanceK(Node* t, int k, vector<int> &ans, int l) {
 
-//     if(k == l) {
-//         ans.push_back(t->data);
-//     }
-//     if(t == NULL) {
-//         return;
-//     }
-    
-//     findNode(t->left,k,ans,l+1);
-//     findNode(t->right,k,ans,l+1);
+    if(k == l) {
+        cout<<"t->data = "<<t->data<<endl;
+        ans.push_back(t->data);
+        return;
+    }
+    if(t == NULL) {
+        return;
+    }
+    if(t->left) findNodeAtDistanceK(t->left,k,ans,l+1);
+    if(t->right) findNodeAtDistanceK(t->right,k,ans,l+1);
 
-//     return;
-
-// }
+}
 
 Node* findNode(Node* root,int key) {
     if(root == NULL)
@@ -64,11 +63,21 @@ int main() {
     root->right->right = new Node(7);
     root->left->left->left = new Node(8);
     root->left->left->right = new Node(9);
+    root->left->right->left = new Node(10);
 
-    Node* ans = findNode(root,4);
+    Node* t = findNode(root,2);
 
-    ans = ans->left;
-    cout<<ans->data;
+    cout<<"t = "<<t->data<<endl;
+
+    int key = 2;
+    vector<int> ans; 
+
+    findNodeAtDistanceK(t,key,ans,0);
+
+    for(auto &i:ans) {
+        cout<<i<<" ";
+    }
+    
 
     
 }
