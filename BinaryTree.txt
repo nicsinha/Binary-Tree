@@ -1,0 +1,7 @@
+Full binary tree - 0 or 2 child.
+Complete binary tree - All level are completely filled except last, from left to right
+Perfect binary tree - All level are filled.
+
+You can always create a unique binary tree if inorder traversal is given and alongwith with other any traversal(Pre,Post).
+
+You can't create unique binary tree if pre and post order traversal id given, but u can create multiple binary tree.
