@@ -16,14 +16,14 @@ struct Node
 
 Node* BuildTreeHelper(vector<int> Inorder,int l,int r,vector<int> PreOrder,int s,int e,unordered_map<int,int> mp) {
 
-    if(l > r || s>e) {return NULL;}
+    if(l > r || s > e) {return NULL;}
     Node* root = new Node(PreOrder[s]);
 
     int index = mp[PreOrder[s]];
 
     int len = index - l;
 
-    root->left = BuildTreeHelper(Inorder,l,index-1,PreOrder,s+1,s+l,mp);
+    root->left = BuildTreeHelper(Inorder,l,index-1,PreOrder,s+1,s+len,mp);
 
     root->right = BuildTreeHelper(Inorder,index+1,r,PreOrder,s+len+1,e,mp);
 
@@ -54,8 +54,8 @@ void inorder(Node* root) {
 }
 int main() {
 
-    vector<int> Inorder = {9,3,15,20,7};
-    vector<int> Prerder = {3,9,20,15,7};
+    vector<int> Inorder = {3, 1, 4, 0, 5, 2};
+    vector<int> Prerder = {0, 1, 3, 4, 2, 5};
 
     Node* root = BuildTree(Inorder,Prerder);
 
